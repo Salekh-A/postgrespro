@@ -217,3 +217,56 @@ Detaching from program: /home/abulg/pg-install/bin/postgres, process 30194
 [Inferior 1 (process 30194) detached]
 (gdb) quit
 ```
+
+# 11. Сравнение с Postgres 17.11 с Postgres 18
+Результаты 3-х прогонов Postgres 17.11
+```
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 7.016 ms
+initial connection time = 22.632 ms
+tps = 1425.283909 (without initial connection time)
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 6.463 ms
+initial connection time = 27.069 ms
+tps = 1547.228851 (without initial connection time)
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 8.643 ms
+initial connection time = 17.438 ms
+tps = 1156.997771 (without initial connection time)
+```
+Средний TPS - 1376.5
+Средний Latency - 7.374
+
