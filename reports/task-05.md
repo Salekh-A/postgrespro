@@ -114,4 +114,63 @@ tps = 1416.218764 (without initial connection time)
 - средний TPS 1516.17
 - средний Latency 6.661 ms
 ```
-Выводы: Если сравнивать средние значения особой разницы нет без расширения, либо с расширением (при 10 клиентах)
+Вывод: Если сравнивать средние значения особой разницы нет без расширения, либо с расширением (при 10 клиентах)
+
+
+# 11. Сравнение с Postgres 17.11 с Postgres 18
+Результаты 3-х прогонов Postgres 17.11
+```
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 7.016 ms
+initial connection time = 22.632 ms
+tps = 1425.283909 (without initial connection time)
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 6.463 ms
+initial connection time = 27.069 ms
+tps = 1547.228851 (without initial connection time)
+abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
+pgbench (17.11)
+starting vacuum...end.
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 10
+number of threads: 2
+maximum number of tries: 1
+number of transactions per client: 1000
+number of transactions actually processed: 10000/10000
+number of failed transactions: 0 (0.000%)
+latency average = 8.643 ms
+initial connection time = 17.438 ms
+tps = 1156.997771 (without initial connection time)
+```
+Средний TPS Postgres 17.11 - 1376.5
+Средний Latency Postgres 17.11 - 7.374
+
+Cредний TPS Postgres 18.6 - 1502.04
+Cредний Latency Postgres 18.6 - 6.715 
+
+Вывод: Postgres 18.6 лучше по средним показателям на 9% (Для более точного результата можно провести больше тестов). 
+
