@@ -1,6 +1,7 @@
 # Отладка PostgreSQL под GDB
 
 # 1. Запускаем сервер  и получаем PID backend
+```
 abulg@HuaweiSx:~/demo_extension$ ~/pg-install/bin/pg_ctl -D ~/pgdata -l ~/pgdata/logfile start
 waiting for server to start.... done
 server started
@@ -13,8 +14,10 @@ postgres=# SELECT pg_backend_pid();
 ----------------
           30102
 (1 row)
+```
 
 # 2. Далее во втором терминале присоединяем GDB к backend
+```
 abulg@HuaweiSx:~$ sudo gdb -p 30102
 GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1
 Copyright (C) 2024 Free Software Foundation, Inc.
@@ -58,8 +61,9 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
     at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
 
 warning: 30     ../sysdeps/unix/sysv/linux/epoll_wait.c: No such file or directory
-
+```
 # 3. Точка остановки в расширении и ядре
+```
 (gdb) break exec_simple_query
 Breakpoint 1 at 0x5c7a67f4393f: file postgres.c, line 1013.
 (gdb) break hello_world
@@ -68,8 +72,10 @@ Make breakpoint pending on future shared library load? (y or [n]) y
 Breakpoint 2 (hello_world) pending.
 (gdb) continue
 Continuing.
+```
 
 # 4. Вызываем функцию hello world в основном терминале. GDB останавливается в ядре
+```
 Основной терминал:
 postgres=# SELECT hello_world();
 
@@ -78,8 +84,9 @@ Breakpoint 1, exec_simple_query (
     query_string=0x5c7aa0bc7030 "SELECT hello_world();")
     at postgres.c:1013
 1013    {
-
+```
 # 5. Стек вызовов в ядре
+```
 (gdb) bt
 #0  exec_simple_query (
     query_string=0x5c7aa0bc7030 "SELECT hello_world();")
@@ -108,8 +115,10 @@ Continuing.
 Breakpoint 2, hello_world (fcinfo=0x5c7aa0caa1b8)
     at demo_extension.c:12
 12          PG_RETURN_TEXT_P(cstring_to_text("Hello, world!"));
+```
 
 # 6. Стек вызовов в расширении
+```
 (gdb) bt
 #0  hello_world (fcinfo=0x5c7aa0caa1b8) at demo_extension.c:12
 #1  0x00005c7a67c37370 in ExecInterpExpr (
@@ -171,16 +180,17 @@ Breakpoint 2, hello_world (fcinfo=0x5c7aa0caa1b8)
     argv=0x5c7aa0bc08f0) at postmaster.c:1401
 #21 0x00005c7a67cda6c2 in main (argc=3, argv=0x5c7aa0bc08f0)
     at main.c:227
+```
 # 7. Аргументы
-
+```
 (gdb) print fcinfo
 $1 = (FunctionCallInfo) 0x5c7aa0ca1078
 
 (gdb) info args
 fcinfo = 0x5c7aa0ca1078
-
+```
 # 8. Наблюдение 
-
+```
 (gdb) watch fcinfo
 Hardware watchpoint 3: fcinfo
 
@@ -189,9 +199,9 @@ Continuing.
 
 Watchpoint 3 deleted because the program has left the block
 in which its expression is valid.
-
+```
 # 9. Результат в psql
-
+```
 postgres=# SELECT hello_world();
   hello_world
 ---------------
@@ -199,10 +209,11 @@ postgres=# SELECT hello_world();
 (1 row)
 
 postgres=#
-
+```
 # 10. Отсоединение 
-
+```
 (gdb) detach
 Detaching from program: /home/abulg/pg-install/bin/postgres, process 30194
 [Inferior 1 (process 30194) detached]
 (gdb) quit
+```
