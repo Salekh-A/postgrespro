@@ -117,7 +117,7 @@ tps = 1416.218764 (without initial connection time)
 Вывод: Если сравнивать средние значения особой разницы нет без расширения, либо с расширением (при 10 клиентах)
 
 
-# 11. Сравнение с Postgres 17.11 с Postgres 18
+#4. Сравнение с Postgres 17.11 с Postgres 18
 Результаты 3-х прогонов Postgres 17.11
 ```
 abulg@HuaweiSx:~/postgresql-rel$ ~/pg-install-rel/bin/pgbench -c 10 -j 2 -t 1000 -p 5433 pgbench_test
