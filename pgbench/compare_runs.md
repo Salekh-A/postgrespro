@@ -1,4 +1,5 @@
 1 прогон
+```
 S1024MBL0C1.report: TPS=414.25, latency=2.418 ms
 S1024MBL0C10.report: TPS=1463.30, latency=6.957 ms
 S1024MBL0C20.report: TPS=1560.98, latency=12.832 ms
@@ -19,8 +20,10 @@ S512MBL1C10.report: TPS=1541.53, latency=6.490 ms
 S512MBL1C20.report: TPS=1793.11, latency=11.168 ms
 S512MBL1C5.report: TPS=1130.04, latency=4.433 ms
 S512MBL1C50.report: TPS=1908.23, latency=26.230 ms
+```
 
 2 прогон
+```
 S1024MBL0C1.report: TPS=428.51, latency=2.348 ms
 S1024MBL0C10.report: TPS=1464.52, latency=6.910 ms
 S1024MBL0C20.report: TPS=1627.11, latency=12.324 ms
@@ -41,9 +44,11 @@ S512MBL1C10.report: TPS=1525.05, latency=6.567 ms
 S512MBL1C20.report: TPS=1685.20, latency=12.116 ms
 S512MBL1C5.report: TPS=1144.02, latency=4.385 ms
 S512MBL1C50.report: TPS=1897.95, latency=26.371 ms
+```
 
 Выводы:
-
+```
 При росте числа клиентов TPS (кол-во транзакций в секунду), latency(среднее время выполнения одной транзакции) также растут
 Расширение pg_stat_statements слегка снижает TPS при 10-50 клиентах
 Разница между 512 МБ и 1024 МБ незначительна
+```
