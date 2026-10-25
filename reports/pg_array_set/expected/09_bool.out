@@ -1,0 +1,12 @@
+SELECT array_unique(ARRAY[true, false, true]);
+ array_unique 
+--------------
+ {t,f}
+(1 row)
+
+SELECT array_intersection(ARRAY[true, false], ARRAY[false]);
+ array_intersection 
+--------------------
+ {f}
+(1 row)
+

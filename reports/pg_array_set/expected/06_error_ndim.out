@@ -1,0 +1,2 @@
+SELECT array_unique(ARRAY[[1,2],[3,4]]);
+ERROR:  only 1-D arrays are supported

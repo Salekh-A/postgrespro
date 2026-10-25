@@ -1,0 +1,18 @@
+SELECT array_unique(ARRAY[1,1,1,1]);
+ array_unique 
+--------------
+ {1}
+(1 row)
+
+SELECT array_union(ARRAY[1,1,2], ARRAY[2,2,3]);
+ array_union 
+-------------
+ {1,2,3}
+(1 row)
+
+SELECT array_intersection(ARRAY[1,1,2,2], ARRAY[1,2,2,3]);
+ array_intersection 
+--------------------
+ {1,2}
+(1 row)
+

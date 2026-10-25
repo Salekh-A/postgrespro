@@ -1,0 +1,12 @@
+SELECT array_unique(ARRAY[' a ', 'a', ' a ']);
+ array_unique 
+--------------
+ {" a ",a}
+(1 row)
+
+SELECT array_intersection(ARRAY['Привет', 'мир'], ARRAY['мир']);
+ array_intersection 
+--------------------
+ {мир}
+(1 row)
+

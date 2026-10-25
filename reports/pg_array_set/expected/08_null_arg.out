@@ -1,0 +1,12 @@
+SELECT array_union(NULL, ARRAY[1,2]);
+ array_union 
+-------------
+ 
+(1 row)
+
+SELECT array_unique(NULL::int[]);
+ array_unique 
+--------------
+ 
+(1 row)
+

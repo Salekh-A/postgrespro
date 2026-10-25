@@ -1,0 +1,18 @@
+SELECT array_intersection(ARRAY[1,2,3], ARRAY[1,2,3]);
+ array_intersection 
+--------------------
+ {1,2,3}
+(1 row)
+
+SELECT array_except(ARRAY[1,2,3], ARRAY[1,2,3]);
+ array_except 
+--------------
+ {}
+(1 row)
+
+SELECT array_symmetric_difference(ARRAY[1,2,3], ARRAY[1,2,3]);
+ array_symmetric_difference 
+----------------------------
+ {}
+(1 row)
+

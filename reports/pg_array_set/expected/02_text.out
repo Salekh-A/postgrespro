@@ -1,0 +1,18 @@
+SELECT array_unique(ARRAY['a','b','a','c']);
+ array_unique 
+--------------
+ {a,b,c}
+(1 row)
+
+SELECT array_intersection(ARRAY['apple','banana'], ARRAY['banana','cherry']);
+ array_intersection 
+--------------------
+ {banana}
+(1 row)
+
+SELECT array_union(ARRAY['A','a'], ARRAY['a','B']);
+ array_union 
+-------------
+ {A,a,B}
+(1 row)
+

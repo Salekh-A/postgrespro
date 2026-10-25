@@ -1,0 +1,30 @@
+SELECT array_intersection(ARRAY[]::int[], ARRAY[]::int[]);
+ array_intersection 
+--------------------
+ {}
+(1 row)
+
+SELECT array_union(ARRAY[]::int[], ARRAY[1,2]);
+ array_union 
+-------------
+ {1,2}
+(1 row)
+
+SELECT array_except(ARRAY[1,2], ARRAY[]::int[]);
+ array_except 
+--------------
+ {1,2}
+(1 row)
+
+SELECT array_symmetric_difference(ARRAY[]::int[], ARRAY[]::int[]);
+ array_symmetric_difference 
+----------------------------
+ {}
+(1 row)
+
+SELECT array_unique(ARRAY[]::text[]);
+ array_unique 
+--------------
+ {}
+(1 row)
+
