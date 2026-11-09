@@ -1,0 +1,29 @@
+SELECT array_union(ARRAY[1,2]::int[], ARRAY['1','2']::int[]);
+ array_union 
+-------------
+ {1,2}
+(1 row)
+
+SELECT array_union(ARRAY[1,2], ARRAY['1','2']);
+ERROR:  function array_union(integer[], text[]) does not exist
+LINE 1: SELECT array_union(ARRAY[1,2], ARRAY['1','2']);
+               ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+SELECT array_intersection(ARRAY['a','b']::varchar[], ARRAY['b','c']::varchar[]);
+ array_intersection 
+--------------------
+ {b}
+(1 row)
+
+SELECT array_except(ARRAY[1.5, 2.5]::numeric[], ARRAY[2.5]::numeric[]);
+ array_except 
+--------------
+ {1.5}
+(1 row)
+
+SELECT array_unique(ARRAY[true, false, true]::boolean[]);
+ array_unique 
+--------------
+ {t,f}
+(1 row)
+
